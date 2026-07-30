@@ -1,0 +1,34 @@
+# Continuous Integration: builds the robot code and runs the tests on every push and pull
+# request to GitHub. If someone's change doesn't compile or breaks a test, the PR gets a
+# red X instead of the robot getting bricked at practice.
+#
+# You don't need to run anything; GitHub picks this file up automatically once the repo is
+# pushed to github.com. Protect your main branch (Settings -> Branches -> require status
+# checks) and this becomes your safety net.
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # WPILib's official image: correct JDK + roboRIO cross-compiler preinstalled, and the
+    # year matches our WPILib version.
+    container: wpilib/roborio-cross-ubuntu:2026-22.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          # Full history so the gversion plugin can stamp BuildConstants with git info.
+          fetch-depth: 0
+
+      - name: Mark repo directory as safe for git
+        run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build and run tests
+        run: ./gradlew build
