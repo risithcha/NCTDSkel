@@ -47,6 +47,10 @@ public class RobotContainer {
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
+    // --- Simulation Controllers -------------------------------------------------------------
+    // CommandXboxController has some flaws, for example, on MacOS, the controller will not
+    // interpret inputs correctly (causing spinning robots!). In order to fix this we define a
+    // seperate CommandSimXboxController in frc.robot.util (the /util folder) that interprets inputs correctly
     if (RobotBase.isSimulation()) {
       driverController = new CommandSimXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
     } else {

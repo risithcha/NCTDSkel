@@ -3,53 +3,74 @@ package frc.robot.util;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Predefined {@link ControllerMapping}s for common gamepad types. The skeleton includes
+ * mappings for Xbox and DualSense controllers; add more here if your team uses different
+ * hardware.
+ *
+ * <p>These mappings are used by {@link CommandSimXboxController} (which defaults to the Xbox
+ * mapping) and can be passed to {@link SimXboxController} directly for simulation testing.
+ */
 public class ControllerMappings {
-    public static final ControllerMapping XBOX_MAPPING;
-    public static final ControllerMapping DUALSENSE_MAPPING;
+  // ----------------------------------------------------------------------------------------
+  // Predefined Mappings
+  // ----------------------------------------------------------------------------------------
 
-    static {
-        Map<String, Integer> xboxButtons = new HashMap<>();
-        xboxButtons.put("A", 1);
-        xboxButtons.put("B", 2);
-        xboxButtons.put("X", 4);
-        xboxButtons.put("Y", 5);
-        xboxButtons.put("LeftBumper", 7);
-        xboxButtons.put("RightBumper", 8);
-        xboxButtons.put("Back", 11);
-        xboxButtons.put("Start", 12);
-        xboxButtons.put("LeftStick", 14);
-        xboxButtons.put("RightStick", 15);
+  /** Standard Xbox controller layout (Xbox 360, Xbox One, Xbox Series X/S, and clones). */
+  public static final ControllerMapping XBOX_MAPPING;
 
-        Map<String, Integer> xboxAxes = new HashMap<>();
-        xboxAxes.put("LeftX", 0);
-        xboxAxes.put("LeftY", 1);
-        xboxAxes.put("RightX", 2);
-        xboxAxes.put("RightY", 3);
-        xboxAxes.put("RightTrigger", 4);
-        xboxAxes.put("LeftTrigger", 5);
+  /** PlayStation DualSense controller layout. */
+  public static final ControllerMapping DUALSENSE_MAPPING;
 
-        XBOX_MAPPING = new ControllerMapping(xboxButtons, xboxAxes);
+  // ----------------------------------------------------------------------------------------
+  // Static Initialization
+  // ----------------------------------------------------------------------------------------
 
-        Map<String, Integer> dualSenseButtons = new HashMap<>();
-        dualSenseButtons.put("A", 1);
-        dualSenseButtons.put("B", 2);
-        dualSenseButtons.put("X", 3);
-        dualSenseButtons.put("Y", 4);
-        dualSenseButtons.put("LeftBumper", 5);
-        dualSenseButtons.put("RightBumper", 6);
-        dualSenseButtons.put("Back", 7);
-        dualSenseButtons.put("Start", 8);
-        dualSenseButtons.put("LeftStick", 10);
-        dualSenseButtons.put("RightStick", 11);
+  static {
+    // --- Xbox Mapping ---------------------------------------------------------------------
+    Map<String, Integer> xboxButtons = new HashMap<>();
+    xboxButtons.put("A", 1);
+    xboxButtons.put("B", 2);
+    xboxButtons.put("X", 4);
+    xboxButtons.put("Y", 5);
+    xboxButtons.put("LeftBumper", 7);
+    xboxButtons.put("RightBumper", 8);
+    xboxButtons.put("Back", 11);
+    xboxButtons.put("Start", 12);
+    xboxButtons.put("LeftStick", 14);
+    xboxButtons.put("RightStick", 15);
 
-        Map<String, Integer> dualSenseAxes = new HashMap<>();
-        dualSenseAxes.put("LeftX", 0);
-        dualSenseAxes.put("LeftY", 1);
-        dualSenseAxes.put("RightX", 4);
-        dualSenseAxes.put("RightY", 5);
-        dualSenseAxes.put("LeftTrigger", 2);
-        dualSenseAxes.put("RightTrigger", 3);
+    Map<String, Integer> xboxAxes = new HashMap<>();
+    xboxAxes.put("LeftX", 0);
+    xboxAxes.put("LeftY", 1);
+    xboxAxes.put("RightX", 2);
+    xboxAxes.put("RightY", 3);
+    xboxAxes.put("RightTrigger", 4);
+    xboxAxes.put("LeftTrigger", 5);
 
-        DUALSENSE_MAPPING = new ControllerMapping(dualSenseButtons, dualSenseAxes);
-    }
+    XBOX_MAPPING = new ControllerMapping(xboxButtons, xboxAxes);
+
+    // --- DualSense Mapping ----------------------------------------------------------------
+    Map<String, Integer> dualSenseButtons = new HashMap<>();
+    dualSenseButtons.put("A", 1); // Cross
+    dualSenseButtons.put("B", 2); // Circle
+    dualSenseButtons.put("X", 3); // Square
+    dualSenseButtons.put("Y", 4); // Triangle
+    dualSenseButtons.put("LeftBumper", 5); // L1
+    dualSenseButtons.put("RightBumper", 6); // R1
+    dualSenseButtons.put("Back", 7); // Create/Share
+    dualSenseButtons.put("Start", 8); // Options
+    dualSenseButtons.put("LeftStick", 10); // L3
+    dualSenseButtons.put("RightStick", 11); // R3
+
+    Map<String, Integer> dualSenseAxes = new HashMap<>();
+    dualSenseAxes.put("LeftX", 0);
+    dualSenseAxes.put("LeftY", 1);
+    dualSenseAxes.put("RightX", 4);
+    dualSenseAxes.put("RightY", 5);
+    dualSenseAxes.put("LeftTrigger", 2); // L2
+    dualSenseAxes.put("RightTrigger", 3); // R2
+
+    DUALSENSE_MAPPING = new ControllerMapping(dualSenseButtons, dualSenseAxes);
+  }
 }
