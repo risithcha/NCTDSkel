@@ -1,5 +1,7 @@
 package frc.robot;
 
+import java.util.Locale;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -51,7 +53,7 @@ public class RobotContainer {
     // CommandXboxController has some flaws, for example, on MacOS, the controller will not
     // interpret inputs correctly (causing spinning robots!). In order to fix this we define a
     // seperate CommandSimXboxController in frc.robot.util (the /util folder) that interprets inputs correctly
-    if (RobotBase.isSimulation()) {
+    if (RobotBase.isSimulation() && System.getProperty("os.name", "").toLowerCase(Locale.ROOT).contains("mac")) {
       driverController = new CommandSimXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
     } else {
       driverController = new CommandXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
