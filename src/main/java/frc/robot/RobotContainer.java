@@ -15,6 +15,7 @@ import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.commands.TurnToAngleCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.util.CommandSimXboxController;
+import frc.robot.commands.DriveToDistanceCommand;
 
 /**
  * This is where the robot is ASSEMBLED. Robot.java owns the clock (what runs when);

@@ -1,7 +1,8 @@
 package frc.robot;
 
 import edu.wpi.first.math.util.Units;
-
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 /**
  * All of the robot's "magic numbers" live in this one file.
  *
@@ -148,7 +149,6 @@ public final class Constants {
     public static final double SLOW_MODE_MULTIPLIER = 0.5;
   }
 
-  /** Constants used by the autonomous routines in {@code commands/Autos.java}. */
   public static final class AutoConstants {
 
     /** Speed (fraction of full power, 0-1) used when driving forward in auto. */
@@ -163,11 +163,23 @@ public final class Constants {
     // --- Turn-to-angle PID gains (see commands/TurnToAngleCommand.java) ------------------
     // Start with only kP. If the robot oscillates around the target, lower kP or add a
     // little kD. If it stops short of the target, raise kP slightly.
-    public static final double TURN_KP = 0.010; // output per degree of error
-    public static final double TURN_KD = 0.001;
+    public static final double TURN_KP = 0.008; // output per degree of error
+    public static final double TURN_KD = 0.002;
     public static final double TURN_MAX_OUTPUT = 0.5; // never spin faster than half power
     public static final double TURN_TOLERANCE_DEGREES = 2.0; // "close enough" to finish
     public static final double TURN_RATE_TOLERANCE_DEG_PER_SEC = 5.0; // and nearly stopped
+
+    public static final double DRIVE_KP = 1.2;
+    public static final double DRIVE_KD = 0.1;
+    public static final double DRIVE_HEADING_KP = 0.02; // start at 0.02
+    public static final double DRIVE_MAX_OUTPUT = 0.6; // never drive faster than 60% power
+    public static final double DRIVE_TOLERANCE_METERS = 0.05; // "close enough" to finish
+    public static final double DRIVE_RATE_TOLERANCE_M_PER_SEC = 0.1; // and nearly stopped
+    public static final double TARGET_DISTANCE_METERS = 2.0; // never drive slower than 60% power
+
+    public static final double DRIVE_TIMEOUT_SECONDS = 4.0;
+    public static final double TURN_TIMEOUT_SECONDS = 2.0;
+    public static final Pose2d GP_START_POSE = new Pose2d(2.0, 2.0, Rotation2d.kZero);
   }
 
   /**
