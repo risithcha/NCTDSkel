@@ -15,7 +15,7 @@ jobs:
 
     # WPILib's official image: correct JDK + roboRIO cross-compiler preinstalled, and the
     # year matches our WPILib version.
-    container: wpilib/roborio-cross-ubuntu:2026-22.04
+    container: wpilib/roborio-cross-ubuntu:2026-22.04-py314
 
     steps:
       - name: Checkout code
