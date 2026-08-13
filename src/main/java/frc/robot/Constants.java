@@ -188,7 +188,15 @@ public final class Constants {
 
     /** Fraction of full power (0 to 1) that ExampleCommand runs the mechanism at. */
     public static final double RUN_SPEED = 0.5;
+
+    public static final class DanceConstants {
+    public static final double kSlowWigglePeriod=1.0;
+    public static final double kSlowWiggleTotalTime=3.0;
+    public static final double kSlowWiggleMangnitude=0.3;
+    public static final double kFastWigglePeriod=0.25;
+    public static final double kFastWiggleTotalTime=2.0;
+    public static final double kFastWiggleMangnitude=0.8;
   }
 
-  private Constants() {} // prevent instantiation; this class is just a bag of numbers
-}
+  private ExampleConstants() {} // prevent instantiation; this class is just a bag of numbers
+}}
