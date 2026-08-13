@@ -9,10 +9,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.robot.Constants.ExampleConstants.DanceConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.commands.TurnToAngleCommand;
+import frc.robot.commands.WiggleCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.util.CommandSimXboxController;
 
@@ -95,6 +97,14 @@ public class RobotContainer {
             Commands.runOnce(() -> drive.resetOdometry(Pose2d.kZero))
                 .ignoringDisable(true)
                 .withName("Reset Odometry"));
+    driverController.a().onTrue(
+  Commands.sequence(
+        new WiggleCommand(drive, DanceConstants.kSlowWigglePeriod, DanceConstants.kSlowWiggleTotalTime, DanceConstants.kSlowWiggleMangnitude),
+        new WiggleCommand(drive, DanceConstants.kFastWigglePeriod, DanceConstants.kFastWiggleTotalTime, DanceConstants.kFastWiggleMangnitude)
+    )
+    .finallyDo(() -> drive.stop())
+    .withName("Dance Routine")
+  );
 
     // B button: demo of a closed-loop command, a quarter turn to the left. Note it
     // interrupts the default drive command while it runs (both require the drivetrain),
