@@ -15,6 +15,7 @@ import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.commands.TurnToAngleCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.util.CommandSimXboxController;
+import frc.robot.commands.DriveToDistanceCommand;
 
 /**
  * This is where the robot is ASSEMBLED. Robot.java owns the clock (what runs when);
@@ -100,6 +101,7 @@ public class RobotContainer {
     // interrupts the default drive command while it runs (both require the drivetrain),
     // then driving resumes automatically. Remove or remap once you've played with it.
     driverController.b().onTrue(new TurnToAngleCommand(drive, 90.0));
+    driverController.x().onTrue(new DriveToDistanceCommand(drive, 2.0));
   }
 
   /** Register every autonomous routine the drive team should be able to pick. */
