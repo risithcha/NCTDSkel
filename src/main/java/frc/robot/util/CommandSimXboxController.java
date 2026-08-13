@@ -103,12 +103,12 @@ public class CommandSimXboxController extends CommandXboxController {
 
   @Override
   public Trigger leftTrigger(double threshold, EventLoop loop) {
-    return axisGreaterThan(mapping.getAxis("LeftTrigger"), threshold, loop);
+    return axisGreaterThan(mapping.getAxis("LeftTrigger"), threshold * 2 - 1, loop);
   }
 
   @Override
   public Trigger rightTrigger(double threshold, EventLoop loop) {
-    return axisGreaterThan(mapping.getAxis("RightTrigger"), threshold, loop);
+    return axisGreaterThan(mapping.getAxis("RightTrigger"), threshold * 2 - 1, loop);
   }
 
   // ----------------------------------------------------------------------------------------
