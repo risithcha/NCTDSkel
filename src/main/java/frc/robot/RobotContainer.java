@@ -50,9 +50,11 @@ public class RobotContainer {
 
   public RobotContainer() {
     // --- Simulation Controllers -------------------------------------------------------------
-    // CommandXboxController has some flaws, for example, on MacOS, the controller will not
-    // interpret inputs correctly (causing spinning robots!). In order to fix this we define a
-    // seperate CommandSimXboxController in frc.robot.util (the /util folder) that interprets inputs correctly
+    // The sim GUI's "Map Gamepad" option translates a controller into WPILib's standard button
+    // and axis layout, but that option does not exist on macOS. There the sim hands us raw HID
+    // indices instead, so the normal bindings land on the wrong axes (causing spinning
+    // robots!). CommandSimXboxController in frc.robot.util (the /util folder) maps those raw
+    // indices back to the right controls. Every other platform uses the stock controller.
     if (RobotBase.isSimulation() && System.getProperty("os.name", "").toLowerCase(Locale.ROOT).contains("mac")) {
       driverController = new CommandSimXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
     } else {

@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
  * {@link SimXboxController} to provide reliable simulated input.
  *
  * <p>This class is used automatically by {@link frc.robot.RobotContainer} when running in
- * simulation (see {@link frc.robot.RobotContainer#RobotContainer()}). It defaults to the
- * {@link ControllerMappings#XBOX_MAPPING} but can be extended to support other mappings.
+ * simulation on macOS (see {@link frc.robot.RobotContainer#RobotContainer()}). It defaults to
+ * {@link ControllerMappings#MACOS_XBOX_MAPPING} but can be extended to support other mappings.
  */
 public class CommandSimXboxController extends CommandXboxController {
   // ----------------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ public class CommandSimXboxController extends CommandXboxController {
    */
   public CommandSimXboxController(int port) {
     super(port);
-    mapping = ControllerMappings.XBOX_MAPPING;
+    mapping = ControllerMappings.MACOS_XBOX_MAPPING;
     m_hid = new SimXboxController(port, mapping);
   }
 

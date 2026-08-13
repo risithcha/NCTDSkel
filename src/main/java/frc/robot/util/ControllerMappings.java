@@ -16,8 +16,13 @@ public class ControllerMappings {
   // Predefined Mappings
   // ----------------------------------------------------------------------------------------
 
-  /** Standard Xbox controller layout (Xbox 360, Xbox One, Xbox Series X/S, and clones). */
-  public static final ControllerMapping XBOX_MAPPING;
+  /**
+   * Raw HID indices an Xbox controller reports when the sim GUI's "Map Gamepad" option is off.
+   * macOS has no Map Gamepad option, so this is the only layout available there. Windows and
+   * Linux map to WPILib's standard layout by default, which stock CommandXboxController
+   * already handles, so this mapping is not used on those platforms.
+   */
+  public static final ControllerMapping MACOS_XBOX_MAPPING;
 
   /** PlayStation DualSense controller layout. */
   public static final ControllerMapping DUALSENSE_MAPPING;
@@ -48,7 +53,7 @@ public class ControllerMappings {
     xboxAxes.put("RightTrigger", 4);
     xboxAxes.put("LeftTrigger", 5);
 
-    XBOX_MAPPING = new ControllerMapping(xboxButtons, xboxAxes);
+    MACOS_XBOX_MAPPING = new ControllerMapping(xboxButtons, xboxAxes);
 
     // --- DualSense Mapping ----------------------------------------------------------------
     Map<String, Integer> dualSenseButtons = new HashMap<>();
