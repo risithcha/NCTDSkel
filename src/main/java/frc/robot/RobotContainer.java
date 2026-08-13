@@ -1,6 +1,9 @@
 package frc.robot;
 
+import java.util.Locale;
+
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -11,6 +14,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.commands.TurnToAngleCommand;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.util.CommandSimXboxController;
 
 /**
  * This is where the robot is ASSEMBLED. Robot.java owns the clock (what runs when);
@@ -36,8 +40,7 @@ public class RobotContainer {
   // --- Controllers --------------------------------------------------------------------------
   // CommandXboxController wraps a normal Xbox controller with a `Trigger` for every button,
   // which makes wiring buttons to commands one readable line (see configureBindings).
-  private final CommandXboxController driverController =
-      new CommandXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
+  private final CommandXboxController driverController;
 
   // --- Autonomous chooser -------------------------------------------------------------------
   // A dropdown that appears on the dashboard (Elastic/AdvantageScope). The drive team picks
@@ -46,6 +49,18 @@ public class RobotContainer {
   private final SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
+    // --- Simulation Controllers -------------------------------------------------------------
+    // The sim GUI's "Map Gamepad" option translates a controller into WPILib's standard button
+    // and axis layout, but that option does not exist on macOS. There the sim hands us raw HID
+    // indices instead, so the normal bindings land on the wrong axes (causing spinning
+    // robots!). CommandSimXboxController in frc.robot.util (the /util folder) maps those raw
+    // indices back to the right controls. Every other platform uses the stock controller.
+    if (RobotBase.isSimulation() && System.getProperty("os.name", "").toLowerCase(Locale.ROOT).contains("mac")) {
+      driverController = new CommandSimXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
+    } else {
+      driverController = new CommandXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
+    }
+
     configureDefaultCommands();
     configureBindings();
     configureAutos();
