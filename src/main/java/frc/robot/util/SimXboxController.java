@@ -65,7 +65,7 @@ public class SimXboxController extends XboxController {
 
   @Override
   public double getLeftTriggerAxis() {
-    return getRawAxis(mapping.getAxis("LeftTrigger"));
+    return (getRawAxis(mapping.getAxis("LeftTrigger")) + 1) / 2;
   }
 
   @Override
@@ -80,7 +80,7 @@ public class SimXboxController extends XboxController {
 
   @Override
   public double getRightTriggerAxis() {
-    return getRawAxis(mapping.getAxis("RightTrigger"));
+    return (getRawAxis(mapping.getAxis("RightTrigger")) + 1) / 2;
   }
 
   @Override
